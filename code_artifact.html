@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERDE - Vegan Dessert Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Noto Serif KR & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f7f4',
+                            100: '#e3eae3',
+                            200: '#c7d6c7',
+                            300: '#a3bba3',
+                            400: '#7c9c7c',
+                            500: '#5c7f5c',
+                            600: '#476547',
+                            700: '#3a513a',
+                            800: '#314231',
+                            900: '#2a382a',
+                        },
+                        cream: {
+                            50: '#fdfbf7',
+                            100: '#f9f5ec',
+                            200: '#f3e9d7',
+                            300: '#e8d7bb',
+                        },
+                        warmbrown: {
+                            600: '#8c6d58',
+                            800: '#523e32',
+                            900: '#33251e',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif KR"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fdfbf7;
+            color: #33251e;
+            scroll-behavior: smooth;
+        }
+        .font-serif-kr {
+            font-family: 'Noto Serif KR', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7d6c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a3bba3;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sage-200 selection:text-sage-900">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-cream-50/80 backdrop-blur-md border-b border-sage-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center font-serif text-lg font-bold group-hover:scale-105 transition-transform">
+                    V
+                </div>
+                <span class="font-serif-kr font-bold text-xl tracking-wider text-sage-900">VERDE</span>
+                <span class="text-xs text-sage-500 uppercase tracking-widest hidden sm:inline-block border-l border-sage-300 pl-2">Vegan Atelier</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-warmbrown-800">
+                <a href="#about" class="hover:text-sage-600 transition-colors">브랜드 스토리</a>
+                <a href="#menu" class="hover:text-sage-600 transition-colors">디저트 라인업</a>
+                <a href="#philosophy" class="hover:text-sage-600 transition-colors">비건 철학</a>
+                <a href="#reviews" class="hover:text-sage-600 transition-colors">리뷰</a>
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-sage-600 text-white hover:bg-sage-700 transition-all shadow-sm hover:shadow">예약 & 문의</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-warmbrown-800 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50 border-b border-sage-100 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-warmbrown-800 hover:text-sage-600 py-1">브랜드 스토리</a>
+            <a href="#menu" class="block text-warmbrown-800 hover:text-sage-600 py-1">디저트 라인업</a>
+            <a href="#philosophy" class="block text-warmbrown-800 hover:text-sage-600 py-1">비건 철학</a>
+            <a href="#reviews" class="block text-warmbrown-800 hover:text-sage-600 py-1">리뷰</a>
+            <a href="#contact" class="block w-full text-center mt-2 px-5 py-2.5 rounded-full bg-sage-600 text-white font-medium">예약 & 문의</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-6 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold tracking-wider uppercase">
+                    <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse"></span>
+                    100% Plant-Based & Organic
+                </div>
+                <h1 class="font-serif-kr text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-warmbrown-900">
+                    자연이 선물하는<br>
+                    <span class="text-sage-600 italic font-serif">달콤하고 건강한</span> 순간
+                </h1>
+                <p class="text-warmbrown-800/80 text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0">
+                    우유, 계란, 버터 없이 식물성 유기농 재료만으로 깊고 리치한 풍미를 선사합니다. 몸과 마음, 그리고 지구에 부담 없는 디저트를 경험하세요.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 pt-4">
+                    <a href="#menu" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-sage-600 text-white font-medium shadow-md hover:bg-sage-700 hover:shadow-lg transition-all flex items-center justify-center gap-2 group">
+                        디저트 구경하기
+                        <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-cream-200 text-warmbrown-900 font-medium hover:bg-sage-100 transition-all text-center">
+                        스토리 보기
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center">
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Vegan Cake Header" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://placehold.co/600x600/c7d6c7/33251e?text=VERDE+Vegan+Dessert'">
+                </div>
+                <div class="absolute -bottom-6 -left-2 sm:left-4 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg border border-sage-100 max-w-xs">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">Gluten-Free Available</p>
+                            <p class="text-sm font-bold text-warmbrown-900">속이 편안한 유기농 쌀 케이크</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop" 
+                             alt="Baking" 
+                             class="rounded-xl shadow-md w-full h-64 object-cover"
+                             onerror="this.src='https://placehold.co/400x500/e3eae3/33251e?text=Baking'">
+                        <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=600&auto=format&fit=crop" 
+                             alt="Ingredients" 
+                             class="rounded-xl shadow-md w-full h-64 object-cover mt-8"
+                             onerror="this.src='https://placehold.co/400x500/c7d6c7/33251e?text=Ingredients'">
+                    </div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-sage-600 text-white p-6 rounded-full w-28 h-28 flex flex-col items-center justify-center text-center shadow-lg">
+                        <span class="text-2xl font-bold font-serif">100%</span>
+                        <span class="text-xs tracking-tight">Plant Based</span>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <span class="text-sage-600 font-semibold tracking-wider text-sm uppercase">OUR STORY</span>
+                    <h2 class="font-serif-kr text-3xl sm:text-4xl font-bold text-warmbrown-900 leading-snug">
+                        "맛있는 디저트가<br>세상을 조금 더 다정하게 만듭니다."
+                    </h2>
+                    <p class="text-warmbrown-800/80 leading-relaxed">
+                        안녕하세요! 베르데(VERDE)의 파티시에입니다. 알레르기가 있는 가족을 위해 만들기 시작했던 비건 베이킹이 
+                        이제는 많은 분들과 따뜻함을 나누는 아틀리에가 되었습니다.
+                    </p>
+                    <p class="text-warmbrown-800/80 leading-relaxed">
+                        동물성 정제당과 동물성 유지방을 배제하고, 국내산 유기농 쌀가루, 코코넛 오일, 마스코바도 원당 등 
+                        원재료 본연의 풍미를 지킨 신선한 재료만을 고집합니다.
+                    </p>
+                    <div class="pt-4 grid grid-cols-2 gap-6 border-t border-sage-100">
+                        <div>
+                            <h4 class="font-bold text-warmbrown-900 text-lg">No Dairy & Egg</h4>
+                            <p class="text-xs text-warmbrown-800/70">우유, 계란, 버터, 꿀 불사용</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-warmbrown-900 text-lg">Eco-Packaging</h4>
+                            <p class="text-xs text-warmbrown-800/70">생분해 친환경 패키징 사용</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 bg-cream-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-sage-600 font-semibold tracking-wider text-sm uppercase">SEASONAL MENU</span>
+                <h2 class="font-serif-kr text-3xl sm:text-4xl font-bold text-warmbrown-900 mt-2">시그니처 비건 디저트</h2>
+                <p class="text-warmbrown-800/70 mt-3">매일 아침 정성스럽게 갓 구워내는 베르데의 프리미엄 디저트를 만나보세요.</p>
+                
+                <!-- Category Filter -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8" id="menu-filter">
+                    <button data-filter="all" class="filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-sage-600 text-white transition-all shadow-sm">전체보기</button>
+                    <button data-filter="cake" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-warmbrown-800 border border-sage-200 hover:border-sage-400 transition-all">케이크</button>
+                    <button data-filter="tart" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-warmbrown-800 border border-sage-200 hover:border-sage-400 transition-all">타르트 & 구움과자</button>
+                    <button data-filter="drink" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-warmbrown-800 border border-sage-200 hover:border-sage-400 transition-all">시그니처 음료</button>
+                </div>
+            </div>
+
+            <!-- Menu Cards Container -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+                
+                <!-- Item 1 -->
+                <div class="menu-item cake bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop" 
+                             alt="말차 가나슈 케이크" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/c7d6c7/33251e?text=Matcha+Cake'">
+                        <span class="absolute top-4 left-4 bg-sage-600 text-white text-xs font-semibold px-3 py-1 rounded-full">BEST</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">제주 유기농 말차 케이크</h3>
+                            <span class="font-bold text-sage-700">8,500원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#글루텐프리 #진한녹차 #두유크림</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">제주 유기농 말차와 국산 쌀가루로 구워낸 시트에 부드러운 두유 생크림을 올린 케이크입니다.</p>
+                        <button onclick="openModal('제주 유기농 말차 케이크', '8,500원', '제주 유기농 말차, 국산 유기농 쌀가루, 코코넛 크림, 두유', 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-item cake bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=800&auto=format&fit=crop" 
+                             alt="라즈베리 초코 케이크" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/e3eae3/33251e?text=Choco+Cake'">
+                        <span class="absolute top-4 left-4 bg-warmbrown-600 text-white text-xs font-semibold px-3 py-1 rounded-full">NEW</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">라즈베리 다크초코</h3>
+                            <span class="font-bold text-sage-700">9,000원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#비건초콜릿 #새콤달콤 #로우케이크</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">공정무역 다크 초콜릿의 풍미와 상큼한 라즈베리 퓨레의 완벽한 조화를 이루는 케이크.</p>
+                        <button onclick="openModal('라즈베리 다크초코 케이크', '9,000원', '공정무역 카카오 70%, 라즈베리, 유기농 원당, 아몬드 가루', 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-item tart bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop" 
+                             alt="무화과 피칸 타르트" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/c7d6c7/33251e?text=Fig+Tart'">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">무화과 피칸 타르트</h3>
+                            <span class="font-bold text-sage-700">7,800원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#견과류고소함 #무설탕잼 #바삭함</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">고소하게 볶아낸 피칸과 달콤한 건무화과가 듬뿍 올라간 바삭한 비건 타르트입니다.</p>
+                        <button onclick="openModal('무화과 피칸 타르트', '7,800원', '피칸, 무화과, 통밀가루, 코코넛 오일, 메이플 시럽', 'https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-item tart bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop" 
+                             alt="단호박 쑥 휘낭시에" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/e3eae3/33251e?text=Financier'">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">단호박 쑥 휘낭시에</h3>
+                            <span class="font-bold text-sage-700">3,800원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#할매입맛 #쫀쫀식감 #은은한단맛</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">국산 거문도 쑥의 향긋함과 국내산 단호박의 담백한 단맛을 결합한 쫀득 구움과자.</p>
+                        <button onclick="openModal('단호박 쑥 휘낭시에', '3,800원', '국산 쑥가루, 단호박, 현미가루, 아몬드유', 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-item drink bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?q=80&w=800&auto=format&fit=crop" 
+                             alt="아몬드 오트 슈페너" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/c7d6c7/33251e?text=Oat+Einspanner'">
+                        <span class="absolute top-4 left-4 bg-sage-600 text-white text-xs font-semibold px-3 py-1 rounded-full">BEST</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">시그니처 오트 슈페너</h3>
+                            <span class="font-bold text-sage-700">6,500원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#귀리밀크 #수제비건크림 #디카페인가능</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">진한 딥 로스팅 에스프레소 위에 수제 귀리 크림을 아낌없이 올린 프리미엄 라떼.</p>
+                        <button onclick="openModal('시그니처 오트 슈페너', '6,500원', '스페셜티 원두, 귀리유(Oat Milk), 식물성 수제 크림', 'https://images.unsplash.com/photo-1556881286-fc6915169721?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-item drink bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sage-100 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800&auto=format&fit=crop" 
+                             alt="애플 로즈마리 에이드" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x400/e3eae3/33251e?text=Apple+Ade'">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-serif-kr text-xl font-bold text-warmbrown-900">청송 사과 로즈마리 티</h3>
+                            <span class="font-bold text-sage-700">6,000원</span>
+                        </div>
+                        <p class="text-xs text-sage-600 font-medium mb-3">#수제청 #허브티 #상큼청량</p>
+                        <p class="text-sm text-warmbrown-800/70 mb-4">직접 담근 수제 사과청에 유기농 로즈마리와 스파클링 워터를 더한 청량한 시그니처 티.</p>
+                        <button onclick="openModal('청송 사과 로즈마리 티', '6,000원', '국산 사과, 로즈마리, 마스코바도 원당, 탄산수', 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800&auto=format&fit=crop')" class="w-full py-2.5 rounded-xl border border-sage-200 text-sage-700 hover:bg-sage-50 font-medium text-sm transition-colors">
+                            상세정보
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 bg-sage-800 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-sage-300 font-semibold tracking-wider text-sm uppercase">WHY VEGAN?</span>
+                <h2 class="font-serif-kr text-3xl sm:text-4xl font-bold mt-2">베르데가 지켜나가는 3가지 원칙</h2>
+                <p class="text-sage-200/80 mt-3">우리가 먹는 디저트 하나가 만들어낼 작은 변화를 믿습니다.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-sage-700/60 border border-sage-600/50 p-8 rounded-2xl hover:bg-sage-700 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-sage-500/30 text-sage-200 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="font-serif-kr text-xl font-bold mb-3">몸의 가벼움</h3>
+                    <p class="text-sage-200/80 text-sm leading-relaxed">
+                        유제품 알레르기나 유당불내증이 있으신 분도 속 더부룩함 없이 편안하게 즐기실 수 있는 건강한 재료만을 사용합니다.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-sage-700/60 border border-sage-600/50 p-8 rounded-2xl hover:bg-sage-700 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-sage-500/30 text-sage-200 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h3 class="font-serif-kr text-xl font-bold mb-3">자연 친화적 가치</h3>
+                    <p class="text-sage-200/80 text-sm leading-relaxed">
+                        축산업에서 발생하는 탄소 배출을 줄이고, 동물성 원료 소비를 지양하여 지구 환경 보호에 동참합니다.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-sage-700/60 border border-sage-600/50 p-8 rounded-2xl hover:bg-sage-700 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-sage-500/30 text-sage-200 flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <h3 class="font-serif-kr text-xl font-bold mb-3">지속 가능한 포장</h3>
+                    <p class="text-sage-200/80 text-sm leading-relaxed">
+                        생분해 옥수수 빨대, 플라스틱 프리 포장재 및 100% 재활용 가능한 용기만을 사용하여 플라스틱 쓰레기를 최소화합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="reviews" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-sage-600 font-semibold tracking-wider text-sm uppercase">REVIEWS</span>
+                <h2 class="font-serif-kr text-3xl sm:text-4xl font-bold text-warmbrown-900 mt-2">고객들의 솔직한 후기</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-2xl bg-cream-50 border border-sage-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-warmbrown-800 text-sm italic mb-4">"비건 케이크는 퍽퍽할 거라는 편견이 완전히 깨졌어요! 말차 케이크 크림이 일반 생크림보다 훨씬 고소하고 깔끔해요."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sage-100">
+                        <div class="w-8 h-8 rounded-full bg-sage-200 text-sage-800 font-bold flex items-center justify-center text-xs">김*희</div>
+                        <div>
+                            <p class="text-xs font-bold text-warmbrown-900">김*희 님</p>
+                            <p class="text-[10px] text-gray-500">네이버 예약 구매자</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-cream-50 border border-sage-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-warmbrown-800 text-sm italic mb-4">"아토피가 있는 아이 선물로 구매했는데 속도 편하고 아주 잘 먹네요. 부모 입장에서 너무 안심되는 디저트입니다."</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sage-100">
+                        <div class="w-8 h-8 rounded-full bg-sage-200 text-sage-800 font-bold flex items-center justify-center text-xs">이*준</div>
+                        <div>
+                            <p class="text-xs font-bold text-warmbrown-900">이*준 님</p>
+                            <p class="text-[10px] text-gray-500">홀케이크 주문 고객</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-cream-50 border border-sage-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-warmbrown-800 text-sm italic mb-4">"오트 슈페너 크림이 진짜 미쳤습니다... 인테리어도 너무 예쁘고 파티시에님도 친절해서 단골 예약입니다!"</p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sage-100">
+                        <div class="w-8 h-8 rounded-full bg-sage-200 text-sage-800 font-bold flex items-center justify-center text-xs">박*영</div>
+                        <div>
+                            <p class="text-xs font-bold text-warmbrown-900">박*영 님</p>
+                            <p class="text-[10px] text-gray-500">매장 방문 고객</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Order Section -->
+    <section id="contact" class="py-24 bg-cream-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-sage-100">
+                
+                <!-- Left Column: Info -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-sage-600 font-semibold tracking-wider text-sm uppercase">RESERVATION & VISIT</span>
+                        <h2 class="font-serif-kr text-3xl font-bold text-warmbrown-900 mt-1">홀케이크 예약 & 클래스 문의</h2>
+                        <p class="text-warmbrown-800/70 text-sm mt-2">최소 2일 전 예약 시 원하시는 날짜에 맞춰 정성껏 준비해 드립니다.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-warmbrown-900 text-sm">아틀리에 위치</p>
+                                <p class="text-xs text-warmbrown-800/80">서울시 마포구 포은로 123 베르데 스튜디오 1층</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-warmbrown-900 text-sm">운영 시간</p>
+                                <p class="text-xs text-warmbrown-800/80">수 - 일요일 : 12:00 - 20:00 (월, 화 휴무)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-warmbrown-900 text-sm">연락처</p>
+                                <p class="text-xs text-warmbrown-800/80">02-1234-5678 / 카카오톡 @VERDE_dessert</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Map Placeholder -->
+                    <div class="rounded-xl overflow-hidden h-40 bg-sage-100 flex items-center justify-center relative border border-sage-200">
+                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=800&auto=format&fit=crop" 
+                             alt="Map visual" 
+                             class="w-full h-full object-cover opacity-60"
+                             onerror="this.src='https://placehold.co/600x200/c7d6c7/33251e?text=VERDE+Map'">
+                        <div class="absolute bg-white px-4 py-2 rounded-full shadow-md text-xs font-bold text-warmbrown-900 flex items-center gap-2">
+                            <i class="fa-solid fa-store text-sage-600"></i> 망원동 연남 인근
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Reservation Form -->
+                <div>
+                    <form id="reservation-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-warmbrown-900 mb-1">성함</label>
+                            <input type="text" required placeholder="홍길동" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sm bg-cream-50/50">
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-warmbrown-900 mb-1">연락처</label>
+                                <input type="tel" required placeholder="010-0000-0000" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sm bg-cream-50/50">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-warmbrown-900 mb-1">픽업 희망일</label>
+                                <input type="date" required class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sm bg-cream-50/50">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-warmbrown-900 mb-1">문의 및 주문 종류</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sm bg-cream-50/50">
+                                <option>홀케이크 예약 (1호/2호)</option>
+                                <option>원데이 쿠킹 클래스 문의</option>
+                                <option>단체 주문 및 답례품</option>
+                                <option>기타 제휴 문의</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-warmbrown-900 mb-1">요청 사항 (알레르기 정보 등)</label>
+                            <textarea rows="3" placeholder="견과류 알레르기 유무 또는 케이크 레터링 문구를 적어주세요." class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:outline-none focus:ring-2 focus:ring-sage-500 text-sm bg-cream-50/50"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-sage-600 hover:bg-sage-700 text-white font-bold text-sm shadow-md transition-all">
+                            예약 및 문의 신청하기
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-warmbrown-900 text-cream-100 py-12 border-t border-warmbrown-800">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 items-center text-center md:text-left">
+            <div>
+                <span class="font-serif-kr font-bold text-xl tracking-wider text-white">VERDE</span>
+                <p class="text-xs text-cream-200/60 mt-2">© 2026 VERDE Vegan Dessert Studio. All rights reserved.</p>
+            </div>
+            <div class="flex justify-center gap-6 text-xl text-cream-200">
+                <a href="#" class="hover:text-sage-300 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-sage-300 transition-colors"><i class="fa-solid fa-blog"></i></a>
+                <a href="#" class="hover:text-sage-300 transition-colors"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+            <div class="text-xs text-cream-200/60 md:text-right">
+                <p>사업자 등록번호 : 123-45-67890</p>
+                <p>대표 : 김베르데 | 마포구 포은로 123</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Menu Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="modal-box">
+            <div class="relative h-56">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-white/80 rounded-full p-2 text-warmbrown-900 hover:bg-white transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 id="modal-title" class="font-serif-kr text-2xl font-bold text-warmbrown-900"></h3>
+                    <span id="modal-price" class="font-bold text-sage-700 text-lg"></span>
+                </div>
+                <div class="bg-sage-50 p-3 rounded-xl mb-4">
+                    <p class="text-xs font-bold text-sage-800 mb-1"><i class="fa-solid fa-seedling mr-1"></i> 사용된 주요 식물성 재료</p>
+                    <p id="modal-ingredients" class="text-xs text-warmbrown-800/80"></p>
+                </div>
+                <p class="text-xs text-gray-500 mb-6">* 매장 상황에 따라 조기 품절될 수 있으며, 당일 라인업은 인스타그램 스토리로 공지됩니다.</p>
+                <button onclick="closeModal()" class="w-full py-3 bg-sage-600 text-white rounded-xl font-bold text-sm hover:bg-sage-700 transition-colors">
+                    확인
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-sage-800 text-white px-6 py-4 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-sage-300 text-xl"></i>
+        <div>
+            <p class="font-bold text-sm">신청이 완료되었습니다!</p>
+            <p class="text-xs text-sage-200">확인 후 24시간 이내로 연락드리겠습니다.</p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Menu Filtering
+        const filterBtns = document.querySelectorAll('#menu-filter button');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Style Active Button
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-sage-600', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-white', 'text-warmbrown-800', 'border', 'border-sage-200');
+                });
+                btn.classList.remove('bg-white', 'text-warmbrown-800', 'border', 'border-sage-200');
+                btn.classList.add('bg-sage-600', 'text-white', 'shadow-sm');
+
+                const filter = btn.getAttribute('data-filter');
+
+                menuItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('detail-modal');
+        const modalBox = document.getElementById('modal-box');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalIngredients = document.getElementById('modal-ingredients');
+        const modalImg = document.getElementById('modal-img');
+
+        function openModal(title, price, ingredients, imgSrc) {
+            modalTitle.innerText = title;
+            modalPrice.innerText = price;
+            modalIngredients.innerText = ingredients;
+            modalImg.src = imgSrc;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-95');
+            modalBox.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Form Submission with Toast Notice
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const toast = document.getElementById('toast');
+            
+            // Show toast
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            // Clear Form
+            document.getElementById('reservation-form').reset();
+
+            // Hide Toast after 4 sec
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+
+        // Scroll Effects for Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
